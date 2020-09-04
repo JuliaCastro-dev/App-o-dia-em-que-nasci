@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+ <html lang="pt-br">
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+       body{
+         color: lavender;
+          display: block;
+          background: #3381f3;
+        }
+        input{
+           border: 3px solid #032d6b;
+           border-radius:1em ;
+           margin:5px;
+           border:none;
+		     padding-top: 0.5em;
+		     padding-bottom: 0.5em;
+		     width: 70%;
+
+        }
+        main{
+           font-family: sans-serif;
+           color: rgb(251, 251, 251);
+           font-weight: 800;
+           height: 190%;
+           width: 100%;
+           background: #3381f3;
+           border-radius: 5px 1px 5px 1px;
+        }
+        button{
+           border: 2px solid #ffffff;
+           font-size:15px;
+           font-weight: 900;
+           border-radius: 3px;
+           margin: 1%;
+           width: 40%;
+           border: none;
+           background: rgb(56, 182, 134);
+           color: mintcream;
+        }
+        @media screen and (min-width: 1000px) {
+       main{
+           
+            width: 30%;
+            height: 800px;
+         }
+      
+      }
+    </style>
+    <title>DATE</title>
+    <script>
+   
+       function verificadia(){
+         if(isNaN(document.getElementById('day').value)){
+           window.alert("Digite apenas números");
+          document.getElementById('day').value="";
+          document.getElementById('day').focus(); 
+         }
+        else
+            { 
+                if ((parseInt(document.getElementById('day').value) < 1) || (parseInt(document.getElementById('day').value)> 31))
+                    {
+                        window.alert("Zé Ruela, digite apenas dias válidos!");
+                       document.getElementById("day").value=""; 
+                       document.getElementById("day").focus();
+                    }
+            }
+           }
+        
+       function start(){
+        var day = parseInt(document.getElementById('day').value); // input do dia
+        var month = parseInt(document.getElementById('month').value); // input do mes
+        var year = parseInt(document.getElementById('year').value); // input do ano
+
+        var hoje = new Date(); // instacia o elemento date
+        var dia = hoje.getDate(); // pega a data de hoje
+        var mes = hoje.getMonth()+1; // pega o mes
+        var ano = hoje.getFullYear(); // pega o ano
+
+
+        hoje.setDate(day);
+        hoje.setMonth(month-1);
+        hoje.setFullYear(year);
+
+
+         var agee = ano - year;
+         // age é o input 
+         if (month > mes)
+            agee = agee - 1;
+         else if ((month == mes) && (day > dia))
+            agee = agee - 1;
+        document.getElementById('age').value = agee;
+
+         var dia_semana = new Array();
+            dia_semana[0] = "em um domingo";
+            dia_semana[1] = "em uma segunda-feira";
+            dia_semana[2] = "em uma terça-feira";
+            dia_semana[3] = "em uma quarta-feira";
+            dia_semana[4] = "em uma quinta-feira";
+            dia_semana[5] = "em uma sexta-feira";
+            dia_semana[6] = "em um sábado";
+
+         document.getElementById("diaSemana").value=dia_semana[hoje.getDay()];
+        //verifica o mês 
+
+          var textmonth= new Array();
+            textmonth[0] = "Janeiro";
+            textmonth[1] = "Fevereiro";
+            textmonth[2] = "Março";
+            textmonth[3] = "Abril";
+            textmonth[4] = "Maio";
+            textmonth[5] = "Junho";
+            textmonth[6] = "Julho";
+            textmonth[7] = "Agosto";
+            textmonth[8] = "Setembro";
+            textmonth[9] = "Outubro";
+            textmonth[10] = "Novembro";
+            textmonth[11] = "Dezembro";
+        document.getElementById('monthtext').value = textmonth[month-1];
+
+         // verifica o signo 
+    
+          if (( day >= 21 && month == 1) || (day <= 18 && month == 2)){
+            document.getElementById('signo').value = "Aquário";  
+          }
+          else if(( day >= 19 && month == 2 || day <= 20 && month == 3)){
+           document.getElementById('signo').value = "Peixes";
+          }
+          else if(( day >= 21 && month == 3 )||( day <= 20 && month== 4)){
+           document.getElementById('signo').value = "Aries";
+          }
+          else if(( day >= 21 && month == 4 )|| (day <= 20 && month== 5)){
+           document.getElementById('signo').value = "Touro";
+          }
+          else if(( day >= 21 && month == 5 || day <= 20 && month== 6)){
+           document.getElementById('signo').value = "Gemeos";
+          }
+          else if(( day >= 21 && month == 6)|| (day <= 22 && month== 7)){
+           document.getElementById('signo').value = "Cancer";
+          }
+          else if(( day >= 23 && month == 7)|| (day <= 22 && month== 8)){
+           document.getElementById('signo').value = "Leão";
+          }
+          else if(( day >= 23 && month == 8)|| (day <= 22 && month== 9)){
+           document.getElementById('signo').value = "Virgem";
+          }
+          else if( (day >= 23 && month == 9) || (day <= 22 && month== 10)){
+           document.getElementById('signo').value = "Libra";
+          }
+          else if(( day >= 23 && month == 10 )|| (day <= 21 && month== 11)){
+           document.getElementById('signo').value = "Escorpião";
+          }
+          else if(( day >= 22 && month == 11 )||( day <= 21 && month== 12)){
+           document.getElementById('signo').value = "Sagitário";
+          }
+          else if(( day >= 22 && month == 12)|| (day <= 20 && month== 1)){
+           document.getElementById('signo').value = "Capricórnio";
+          }
+      
+        }
+       function foco(){
+        document.getElementById('day').focus();
+       }
+
+   </script>
+ </head>
+<body>
+   <center>
+      <h1>O dia em que nasci</h1>
+ <main>
+     <form>
+        </BR></BR>
+        <input id="day" type="text" placeholder="informe o dia em que nasceu" onMouseOut= "verificadia()">
+        <input id="month" type="text" placeholder="infome o mês">
+        <input id="year" type="text" placeholder="infome o ano">
+         </BR></BR> 
+        <span> O mês de nascimento é</span>
+        <input id="monthtext" type="text">
+         </BR>
+        <span>Nasceu em um(a)</span>
+        <input id="diaSemana" type="text" >
+         </BR>
+        <span>Seu signo é:</span> </BR>
+        <input id="signo" type="text"  >
+         </BR>
+        <span>Você tem:</span>
+         </BR>
+        <input id="age" type="text">
+        </BR>
+        <input  type="button"  value="Start" onClick="start()"/>
+         </BR>
+        <input type="reset" value="Limpar" class="Clean" onClick="foco()"/>
+
+      </BR>
+    </form>
+ </main>
+ </center>
+   
+ </body>
+ </html>
+
+     
+
